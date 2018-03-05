@@ -30,12 +30,7 @@ app.get('/movieInfo', function(req, res) {
     .then(function(response) {
       console.log(response.data);
       const poster = response.data.Search[0].Poster;
-      const title = response.data.Search[0].Title;
       res.send({poster});
-      // res.render("index", {
-      //   title,
-      //   poster
-      // })
     })
     .catch(function(response) {
       res.send({})
