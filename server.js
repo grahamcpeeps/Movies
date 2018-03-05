@@ -3,6 +3,7 @@ const axios = require('axios');
 const hbs = require('hbs');
 const path = require('path');
 
+const port = process.env.PORT || 3000;
 const app = express();
 
 app.set('views', path.join(__dirname, 'Views'));
@@ -23,13 +24,18 @@ app.get('/movieInfo', function(req, res) {
   // const id = req.query.id;
   // const apiKey = '3fc535bc';
   const apiKey = process.env.API_KEY;
-  console.log(apiKey);
-  
+  console.log("hello " + apiKey);
+
   axios.get(`http://omdbapi.com/?apikey=${apiKey}&s=${title}`)
     .then(function(response) {
       console.log(response.data);
       const poster = response.data.Search[0].Poster;
+      const title = response.data.Search[0].Title;
       res.send({poster});
+      // res.render("index", {
+      //   title,
+      //   poster
+      // })
     })
     .catch(function(response) {
       res.send({})
