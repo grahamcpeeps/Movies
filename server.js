@@ -24,7 +24,6 @@ app.get('/movieInfo', function(req, res) {
   // const id = req.query.id;
   // const apiKey = '3fc535bc';
   const apiKey = process.env.API_KEY;
-  console.log("hello " + apiKey);
 
   axios.get(`http://omdbapi.com/?apikey=${apiKey}&s=${title}`)
     .then(function(response) {
