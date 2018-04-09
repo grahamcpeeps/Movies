@@ -1,5 +1,7 @@
 $(document).ready(function() {
   const titleInput = $('#movie-title');
+  const title = $('#title');
+  const year = $('#year');
   const poster = $('#poster');
   const errorMessage = $('#error-message')
 
@@ -9,9 +11,15 @@ $(document).ready(function() {
       titleInput.val("");
       $.get(`/movieInfo?title=${movieTitle}`, function(response) {
         // console.log(response);
-        if (response.poster) {
+        if (response.poster && response.movieName && response.year) {
+          console.log("Hello Mr. Friebel");
+          title.html("Movie title: " + response.movieName);
+          title.removeClass('hidden');
+          year.html("Movie year: " + response.year);
+          year.removeClass('hidden');
           poster.attr('src', response.poster);
           poster.removeClass('hidden');
+
           errorMessage.addClass('hidden');
         }
         else {

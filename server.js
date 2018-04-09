@@ -30,8 +30,14 @@ app.get('/movieInfo', function(req, res) {
   axios.get(`http://omdbapi.com/?apikey=${apiKey}&s=${title}`)
     .then(function(response) {
       console.log(response.data);
+      const movieName = response.data.Search[0].Title;
+      const year = response.data.Search[0].Year;
       const poster = response.data.Search[0].Poster;
-      res.send({poster});
+      res.send({
+        movieName,
+        year,
+        poster
+      });
     })
     .catch(function(response) {
       res.send({})
